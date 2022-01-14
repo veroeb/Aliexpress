@@ -1,14 +1,22 @@
 package steps;
 
+import factory.DriverFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import pages.HomePage;
 
 public class Steps {
+    private static WebDriver driver;
+
     @Given("I access Aliexpress webpage")
     public void accessAliexpressWebpage() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        /**
+         * The user access the Aliexpress webpage
+         */
+        driver = DriverFactory.getDriver();
+        new HomePage(driver).getUrl("https://aliexpress.com/");
     }
     @When("I search for {string} with the search bar")
     public void searchWithSearchBar(String string) {
