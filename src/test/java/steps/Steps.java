@@ -13,7 +13,6 @@ import pages.ProductPage;
 import java.util.List;
 
 public class Steps {
-    private static WebDriver driver;
     private HomePage homePage;
     private List<WebElement> results;
     private ProductPage productPage;
@@ -23,7 +22,7 @@ public class Steps {
         /**
          * Access the Aliexpress webpage
          */
-        driver = DriverFactory.getDriver();
+        WebDriver driver = DriverFactory.getDriver();
         homePage = new HomePage(driver);
         homePage.getUrl("https://aliexpress.com/");
     }
@@ -66,7 +65,7 @@ public class Steps {
         /**
          * Verify there's at least one item available
          */
-        Integer quantity = productPage.verifyOneItemAvailable();
+        int quantity = productPage.verifyOneItemAvailable();
         Assert.assertTrue(quantity >= 1, "There's no stock");
     }
 }

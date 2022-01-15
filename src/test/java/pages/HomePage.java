@@ -1,5 +1,7 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,8 +25,33 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
+    public void isElementPresent(String element){
+        /**
+         * Verifies if the element is present and closes it
+         */
+        List<WebElement> webElementList = null;
+        if (element.equals("popUp"))
+            webElementList = getDriver().findElements(By.cssSelector(".pop-content .pop-close-btn"));
+        else if (element.equals("subscriptionPopUp"))
+            webElementList = getDriver().findElements(By.cssSelector("iframe ~ div div ~ img"));
+        if (!webElementList.isEmpty())
+            webElementList.get(0).click();
+    }
+
+    public void isElementIntercepted(WebElement element){
+        try {
+            getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
+        }
+        catch (ElementClickInterceptedException e){
+            System.out.println("The element has been intercepted. It will retry.");
+            getDriver().findElement(By.tagName("body")).click();
+        }
+    }
+
     public void searchOnSearchBar(String phoneBrand){
-        getWait().until(ExpectedConditions.elementToBeClickable(searchBar)).click();
+        isElementPresent("popUp");
+        isElementPresent("subscriptionPopUp");
+        isElementIntercepted(searchBar);
         searchBar.sendKeys(phoneBrand);
         searchBar.submit();
     }
@@ -39,7 +66,7 @@ public class HomePage extends BasePage{
     }
 
     public ProductPage clickSecondCard(List<WebElement> webElementList){
-        getWait().until(ExpectedConditions.elementToBeClickable(webElementList.get(1))).click();
+        isElementIntercepted(webElementList.get(1));
         return new ProductPage(this.getDriver());
     }
 }
