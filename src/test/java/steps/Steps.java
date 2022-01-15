@@ -63,7 +63,10 @@ public class Steps {
 
     @Then("I can verify that there's at least one item available")
     public void verifyOneItemAvailable() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        /**
+         * Verify there's at least one item available
+         */
+        Integer quantity = productPage.verifyOneItemAvailable();
+        Assert.assertTrue(quantity >= 1, "There's no stock");
     }
 }

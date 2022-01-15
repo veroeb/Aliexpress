@@ -31,8 +31,7 @@ public class HomePage extends BasePage{
 
     public void clickNextResultsPage(){
         scrollToBottomOfPage();
-        WebElement nextPageButton = getWait().until(ExpectedConditions.elementToBeClickable(nextPage));
-        nextPageButton.click();
+        getWait().until(ExpectedConditions.elementToBeClickable(nextPage)).click();
     }
 
     public List<WebElement> getResults(){
