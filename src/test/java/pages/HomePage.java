@@ -23,9 +23,19 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
-    public void searchWithSearchBar(String phoneBrand){
+    public void searchOnSearchBar(String phoneBrand){
         getWait().until(ExpectedConditions.elementToBeClickable(searchBar)).click();
         searchBar.sendKeys(phoneBrand);
         searchBar.submit();
+    }
+
+    public void clickNextResultsPage(){
+        scrollToBottomOfPage();
+        WebElement nextPageButton = getWait().until(ExpectedConditions.elementToBeClickable(nextPage));
+        nextPageButton.click();
+    }
+
+    public List<WebElement> getResults(){
+        return getWait().until(ExpectedConditions.visibilityOfAllElements(results));
     }
 }
