@@ -38,4 +38,9 @@ public class HomePage extends BasePage{
     public List<WebElement> getResults(){
         return getWait().until(ExpectedConditions.visibilityOfAllElements(results));
     }
+
+    public ProductPage clickSecondCard(List<WebElement> webElementList){
+        getWait().until(ExpectedConditions.elementToBeClickable(webElementList.get(1))).click();
+        return new ProductPage(this.getDriver());
+    }
 }

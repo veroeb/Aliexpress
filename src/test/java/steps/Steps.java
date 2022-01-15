@@ -8,12 +8,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.HomePage;
+import pages.ProductPage;
 
 import java.util.List;
 
 public class Steps {
     private static WebDriver driver;
     private HomePage homePage;
+    private List<WebElement> results;
+    private ProductPage productPage;
 
     @Given("I access Aliexpress webpage")
     public void accessAliexpressWebpage() {
@@ -35,6 +38,9 @@ public class Steps {
 
     @When("I click on the next search results page")
     public void clickNextResultsPage() {
+        /**
+         * Click on the next page button to see more results
+         */
         homePage.clickNextResultsPage();
     }
 
@@ -43,14 +49,16 @@ public class Steps {
         /**
          * Get all the results for the product
          */
-        List<WebElement> results = homePage.getResults();
+        results = homePage.getResults();
         Assert.assertFalse(results.isEmpty(), "There are no results");
     }
 
     @When("I click on the second card")
     public void clickSecondCard() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        /**
+         * Click on the second card of the results list
+         */
+        productPage = homePage.clickSecondCard(results);
     }
 
     @Then("I can verify that there's at least one item available")

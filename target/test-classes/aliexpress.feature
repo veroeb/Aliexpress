@@ -5,7 +5,7 @@ Feature: Aliexpress
 
   Scenario: Verify there's at least one iPhone available
     Given I access Aliexpress webpage
-    When I search for "iPhone" with the search bar
+    When I search for "iPhone" on the search bar
     And I click on the next search results page
     Then I can see all results
     When I click on the second card
