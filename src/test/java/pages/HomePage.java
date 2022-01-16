@@ -39,16 +39,22 @@ public class HomePage extends BasePage{
     }
 
     public void isElementIntercepted(WebElement element){
+        /**
+         * If the element is intercepted, it will try to locate it again
+         */
         try {
             getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
         }
         catch (ElementClickInterceptedException e){
             System.out.println("The element has been intercepted. It will retry.");
-            getDriver().findElement(By.tagName("body")).click();
+            getWait().until(ExpectedConditions.elementToBeClickable(element)).click();
         }
     }
 
     public void searchOnSearchBar(String phoneBrand){
+        /**
+         * Searches a product in the search bar
+         */
         isElementPresent("popUp");
         isElementPresent("subscriptionPopUp");
         isElementIntercepted(searchBar);
@@ -57,15 +63,24 @@ public class HomePage extends BasePage{
     }
 
     public void clickNextResultsPage(){
+        /**
+         * Clicks on the next page button to see more results
+         */
         scrollToBottomOfPage();
         getWait().until(ExpectedConditions.elementToBeClickable(nextPage)).click();
     }
 
     public List<WebElement> getResults(){
+        /**
+         * Gets all the results for the product
+         */
         return getWait().until(ExpectedConditions.visibilityOfAllElements(results));
     }
 
     public ProductPage clickSecondCard(List<WebElement> webElementList){
+        /**
+         * Clicks on the second card of the results list
+         */
         isElementIntercepted(webElementList.get(1));
         return new ProductPage(this.getDriver());
     }

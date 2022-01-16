@@ -30,7 +30,7 @@ public class Steps {
     @When("I search for {string} on the search bar")
     public void searchOnSearchBar(String phoneBrand) {
         /**
-         * Search a product in the search bar
+         * Searches a product in the search bar
          */
         homePage.searchOnSearchBar(phoneBrand);
     }
@@ -38,7 +38,7 @@ public class Steps {
     @When("I click on the next search results page")
     public void clickNextResultsPage() {
         /**
-         * Click on the next page button to see more results
+         * Clicks on the next page button to see more results
          */
         homePage.clickNextResultsPage();
     }
@@ -46,7 +46,7 @@ public class Steps {
     @Then("I can see all results")
     public void getResults() {
         /**
-         * Get all the results for the product
+         * Gets all the results for the product
          */
         results = homePage.getResults();
         Assert.assertFalse(results.isEmpty(), "There are no results");
@@ -55,7 +55,7 @@ public class Steps {
     @When("I click on the second card")
     public void clickSecondCard() {
         /**
-         * Click on the second card of the results list
+         * Clicks on the second card of the results list
          */
         productPage = homePage.clickSecondCard(results);
     }
@@ -63,7 +63,7 @@ public class Steps {
     @Then("I can verify that there's at least one item available")
     public void verifyOneItemAvailable() {
         /**
-         * Verify there's at least one item available
+         * Verifies that there's at least one item available
          */
         int quantity = productPage.verifyOneItemAvailable();
         Assert.assertTrue(quantity >= 1, "There's no stock");

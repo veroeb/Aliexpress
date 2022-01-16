@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Aliexpress" />
         <module name="LuckyApp_Echezarreta" />
       </profile>
     </annotationProcessing>

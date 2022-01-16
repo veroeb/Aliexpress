@@ -16,6 +16,9 @@ public class ProductPage extends BasePage{
     }
 
     public int verifyOneItemAvailable(){
+        /**
+         * Verifies that there's at least one item available
+         */
         switchTabs();
         String productQuantityText =  getWait().until(ExpectedConditions.visibilityOf(quantity)).getText();
         return Integer.parseInt(productQuantityText.replaceAll("[^0-9]", ""));
