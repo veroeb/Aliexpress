@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductPage extends BasePage{
     //==============LOCATORS==================
-    @FindBy(css = ".product-quantity-tip span span")
+    @FindBy(css = ".pdp-body-right *[class*='quantity--info']")
     private WebElement quantity;
     //========================================
 

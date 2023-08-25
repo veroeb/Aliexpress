@@ -14,10 +14,10 @@ public class HomePage extends BasePage{
     @FindBy(id = "search-key")
     private WebElement searchBar;
 
-    @FindBy(css = "#root div.product-container > div:nth-child(2) > a")
+    @FindBy(css = "#card-list a.search-card-item")
     private List<WebElement> results;
 
-    @FindBy(css = ".next-pagination-pages > :nth-child(3)")
+    @FindBy(css = "li.next-next")
     private WebElement nextPage;
     //========================================
 
@@ -67,7 +67,8 @@ public class HomePage extends BasePage{
          * Clicks on the next page button to see more results
          */
         scrollToBottomOfPage();
-        getWait().until(ExpectedConditions.elementToBeClickable(nextPage)).click();
+        isElementIntercepted(nextPage);
+//        getWait().until(ExpectedConditions.elementToBeClickable(nextPage)).click();
     }
 
     public List<WebElement> getResults(){

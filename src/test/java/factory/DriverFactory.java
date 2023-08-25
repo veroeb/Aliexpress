@@ -9,8 +9,9 @@ public class DriverFactory {
 
     public static WebDriver initializeDriver(){
         WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().driverVersion("116.0.5845.96").setup();
         driver = new ChromeDriver();
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         return driver;
     }
 
